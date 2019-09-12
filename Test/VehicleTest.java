@@ -1,7 +1,4 @@
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 public class VehicleTest {
 
@@ -14,10 +11,10 @@ public class VehicleTest {
     };
 
     @Test
-    public void testMakeAndModel() {
+    public void testVehicle() {
         for (int i = 0; i < vehicles.length; i++) {
             vehicles[i].printVehicle();
-            System.out.println("");
+            System.out.println();
         }
     }
 }
