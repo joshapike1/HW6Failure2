@@ -28,14 +28,7 @@ public class Truck extends Vehicle {
     }
 
     public void printVehicle() {
-        System.out.println(getYear() + " " + getMakeAndModel());
-
-        if (getIs4WD() == true) System.out.println("4WD");
-        else System.out.println("2WD");
-
-        DecimalFormat format = new DecimalFormat("#,###");
-        System.out.println("$" + format.format(getMSRP()));
-        System.out.println(getMpg() + "MPG");
+        super.printVehicle();
 
         if (this.hasSideStep == true) System.out.println("Has side step");
         else System.out.println("No Side Step");

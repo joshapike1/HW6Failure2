@@ -63,6 +63,13 @@ public class Vehicle {
 
     // Print statement that is overwritten
     public void printVehicle() {
-        System.out.println("No vehicles :(");
+        System.out.println(getYear() + " " + getMakeAndModel());
+
+        if (getIs4WD() == true) System.out.println("4WD");
+        else System.out.println("2WD");
+
+        DecimalFormat format = new DecimalFormat("#,###");
+        System.out.println("$" + format.format(getMSRP()));
+        System.out.println(getMpg() + "MPG");
     }
 }

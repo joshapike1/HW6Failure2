@@ -2,19 +2,21 @@ import org.junit.Test;
 
 public class VehicleTest {
 
-    Vehicle[] vehicles = {
-            new Car("Honda Civic", 1995, false, 12000, 32, false),
-            new Car("Toyota Supra", 2019, true, 49000, 27, true),
-            new Car("Toyota Supra", 1998, false, 32000, 15, false),
-            new Truck("Toyota Tacoma", 1999, true, 22000, 17, false, 2),
-            new Truck("Chevy Silverado", 2000, true, 26000, 11, true, 4)
-    };
 
     @Test
-    public void testVehicle() {
-        for (int i = 0; i < vehicles.length; i++) {
-            vehicles[i].printVehicle();
-            System.out.println();
-        }
-    }
+    public void testGetters() {
+    //given
+    Vehicle vehicle = new Vehicle("Honda Civic", 2013, false, 17000, 32);
+
+    //when
+        vehicle.printVehicle();
+
+    //then
+        Assert.assertEquals("Model mismatch", "Honda Civic", vehicle.getMakeModel());
+        Assert.assertEquals("Year mismatch", 2013, vehicle.getModelYear(), 0.0);
+        Assert.assertEquals("WheelDrive mismatch", false, vehicle.getWheelDrive());
+        Assert.assertEquals("Price mismatch", 17000, vehicle.getRetailPrice(), 0.0);
+        Assert.assertEquals("MPG mismatch", 32, vehicle.getMpg(), 0.0);
+
+}
 }
