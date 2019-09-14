@@ -51,11 +51,10 @@ public class Inventory {
     // Print average MSRP of all vehicles
     public void printAveragePriceOfAllVehicles() {
         double pricesAdded = 0;
-        int var = 0;
 
         for (int i = 0; i < this.Inventory.size(); i++) {
             pricesAdded += Inventory.get(i).getMSRP();
         }
-        System.out.println("The average price of vehicles is " + (pricesAdded / Inventory.size()));
+        System.out.println("The average price of the vehicles is " + (pricesAdded / Inventory.size()));
     }
 }

@@ -4,19 +4,20 @@ import org.junit.Test;
     public class CarTest {
 
         @Test
-        public void testGetters() {
-            //Given
-            Car car = new Car("Porsche Boxster", 2016, false, 52000, 32, true);
+        public void testCar() {
+            // Given
+            Car car = new Car("Chevy Malibu", 2018, true, 42000, 26, false);
 
-            //When
+            // When
+            car.setIsConvertible(false);
             car.printVehicle();
 
-            //Then
-            Assert.assertEquals("Model mismatch", "Porsche Boxster", car.getMakeAndModel());
-            Assert.assertEquals("Year mismatch", 2016, car.getYear(), 0.0);
-            Assert.assertEquals("WheelDrive mismatch", false, car.getIs4WD());
-            Assert.assertEquals("Price mismatch", 52000, car.getMSRP(), 0.0);
-            Assert.assertEquals("MPG mismatch", 32, car.getMpg(), 0.0);
-            Assert.assertEquals("Convertable mismatch", true, car.getIsConvertible());
+            // Then
+            Assert.assertEquals("Model Mismatch", "Chevy Malibu", car.getMakeAndModel());
+            Assert.assertEquals("Year Mismatch", 2018, car.getYear());
+            Assert.assertEquals("Drive Mismatch", true, car.getIs4WD());
+            Assert.assertEquals("MSRP Mismatch", 42000, car.getMSRP());
+            Assert.assertEquals("MPG Mismatch", 26, car.getMpg());
+            Assert.assertEquals("Convertable Mismatch", false, car.getIsConvertible());
         }
 }

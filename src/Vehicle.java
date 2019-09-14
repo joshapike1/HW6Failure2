@@ -70,6 +70,6 @@ public class Vehicle {
 
         DecimalFormat format = new DecimalFormat("#,###");
         System.out.println("$" + format.format(getMSRP()));
-        System.out.println(getMpg() + "MPG");
+        System.out.println(getMpg() + " MPG");
     }
 }

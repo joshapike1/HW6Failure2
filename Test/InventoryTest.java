@@ -4,158 +4,170 @@ import org.junit.Assert;
 public class InventoryTest {
 
     @Test
-    public void testCheapestVehicleNormal(){
-        //given
-        Vehicle norm1 = new Vehicle("Ran Model", 2012, false, 12000, 26);
-        Vehicle norm2 = new Vehicle("Ran Model", 2012, false, 11000, 26);
-        Vehicle norm3 = new Vehicle("Ran Model", 2012, false, 10000, 26);
-        Vehicle norm4 = new Vehicle("Ran Model", 2012, false, 200, 26);
-        Inventory vehicleTest = new Inventory();
-        vehicleTest.addVehicle(norm1);
-        vehicleTest.addVehicle(norm2);
-        vehicleTest.addVehicle(norm3);
-        vehicleTest.addVehicle(norm4);
+    public void testAddRemovePrint() {
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 2, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 2, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 2, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, 2, 23);
 
-        //when
+        Inventory vehicleTest = new Inventory();
+        vehicleTest.addVehicle(test_model_1);
+        vehicleTest.addVehicle(test_model_2);
+        vehicleTest.addVehicle(test_model_3);
+        vehicleTest.addVehicle(test_model_4);
+        vehicleTest.removeVehicle(test_model_4);
+        vehicleTest.removeVehicle(test_model_3);
+        vehicleTest.removeVehicle(test_model_2);
+        vehicleTest.removeVehicle(test_model_1);
+
+        vehicleTest.printAveragePriceOfAllVehicles();
+    }
+
+    @Test
+    public void testFindCheapestVehicle() {
+        // Given
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 10000, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 11000, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 12000, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, 13000, 23);
+
+        Inventory vehicleTest = new Inventory();
+        vehicleTest.addVehicle(test_model_1);
+        vehicleTest.addVehicle(test_model_2);
+        vehicleTest.addVehicle(test_model_3);
+        vehicleTest.addVehicle(test_model_4);
+
+        // When
         vehicleTest.findCheapestVehicle();
 
-        //then
-        Assert.assertEquals("Not cheapest car", norm4, vehicleTest.findCheapestVehicle());
+        // Then
+        Assert.assertEquals("This is not the cheapest car", test_model_1, vehicleTest.findCheapestVehicle());
     }
 
     @Test
-    public void testCheapestVehicleZero(){
-        //given
-        Vehicle norm1 = new Vehicle("Ran Model", 2012, false, 12000, 26);
-        Vehicle norm2 = new Vehicle("Ran Model", 2012, false, 11000, 26);
-        Vehicle norm3 = new Vehicle("Ran Model", 2012, false, 10000, 26);
-        Vehicle norm4 = new Vehicle("Ran Model", 2012, false, 0, 26);
-        Inventory vehicleTest = new Inventory();
-        vehicleTest.addVehicle(norm1);
-        vehicleTest.addVehicle(norm2);
-        vehicleTest.addVehicle(norm3);
-        vehicleTest.addVehicle(norm4);
+    public void testFindCheapestVehicleZero(){
+        // Given
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 10000, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 11000, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 12000, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, 0, 23);
 
-        //when
+        Inventory vehicleTest = new Inventory();
+        vehicleTest.addVehicle(test_model_1);
+        vehicleTest.addVehicle(test_model_2);
+        vehicleTest.addVehicle(test_model_3);
+        vehicleTest.addVehicle(test_model_4);
+
+        // When
         vehicleTest.findCheapestVehicle();
 
-        //then
-        Assert.assertEquals("Not cheapest car", norm4, vehicleTest.findCheapestVehicle());
+        // Then
+        Assert.assertEquals("This is not the cheapest car", test_model_4, vehicleTest.findCheapestVehicle());
     }
 
     @Test
-    public void testCheapestVehicleNegative(){
-        //given
-        Vehicle norm1 = new Vehicle("Ran Model", 2012, false, 12000, 26);
-        Vehicle norm2 = new Vehicle("Ran Model", 2012, false, 11000, 26);
-        Vehicle norm3 = new Vehicle("Ran Model", 2012, false, 10000, 26);
-        Vehicle norm4 = new Vehicle("Ran Model", 2012, false, -1, 26);
-        Inventory vehicleTest = new Inventory();
-        vehicleTest.addVehicle(norm1);
-        vehicleTest.addVehicle(norm2);
-        vehicleTest.addVehicle(norm3);
-        vehicleTest.addVehicle(norm4);
+    public void testFindCheapestVehicleNegative(){
+        // Given
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 10000, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 11000, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 12000, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, -13000, 23);
 
-        //when
+        Inventory vehicleTest = new Inventory();
+        vehicleTest.addVehicle(test_model_1);
+        vehicleTest.addVehicle(test_model_2);
+        vehicleTest.addVehicle(test_model_3);
+        vehicleTest.addVehicle(test_model_4);
+
+        // When
         vehicleTest.findCheapestVehicle();
 
-        //then
-        Assert.assertEquals("Not cheapest car", norm4, vehicleTest.findCheapestVehicle());
+        // Then
+        Assert.assertEquals("This is not the cheapest car", test_model_4, vehicleTest.findCheapestVehicle());
     }
 
     @Test
-    public void testCheapestVehicleHigh(){
-        //given
-        Vehicle norm1 = new Vehicle("Ran Model", 2012, false, 12000, 26);
-        Vehicle norm2 = new Vehicle("Ran Model", 2012, false, 11000, 26);
-        Vehicle norm3 = new Vehicle("Ran Model", 2012, false, 10000, 26);
-        Vehicle norm4 = new Vehicle("Ran Model", 2012, false, 1000000000, 26);
-        Inventory vehicleTest = new Inventory();
-        vehicleTest.addVehicle(norm1);
-        vehicleTest.addVehicle(norm2);
-        vehicleTest.addVehicle(norm3);
-        vehicleTest.addVehicle(norm4);
+    public void testCheapestVehicleLargeNumber(){
+        // Given
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 10000, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 11000, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 12000, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, 1300000000, 23);
 
-        //when
+        Inventory vehicleTest = new Inventory();
+        vehicleTest.addVehicle(test_model_1);
+        vehicleTest.addVehicle(test_model_2);
+        vehicleTest.addVehicle(test_model_3);
+        vehicleTest.addVehicle(test_model_4);
+
+        // When
         vehicleTest.findCheapestVehicle();
 
-        //then
-        Assert.assertEquals("Not cheapest car", norm3, vehicleTest.findCheapestVehicle());
+        // Then
+        Assert.assertEquals("This is not the cheapest car", test_model_1, vehicleTest.findCheapestVehicle());
     }
 
     @Test
-    public void testExpensiveVehicleNormal(){
-        //given
-        Vehicle norm1 = new Vehicle("Ran Model", 2012, false, 12000, 26);
-        Vehicle norm2 = new Vehicle("Ran Model", 2012, false, 11000, 26);
-        Vehicle norm3 = new Vehicle("Ran Model", 2012, false, 10000, 26);
-        Vehicle norm4 = new Vehicle("Ran Model", 2012, false, 13000, 26);
-        Inventory vehicleTest = new Inventory();
-        vehicleTest.addVehicle(norm1);
-        vehicleTest.addVehicle(norm2);
-        vehicleTest.addVehicle(norm3);
-        vehicleTest.addVehicle(norm4);
+    public void testFindMostExpensiveVehicle() {
+        // Given
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 10000, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 11000, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 12000, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, 130000, 23);
 
-        //when
+        Inventory vehicleTest = new Inventory();
+        vehicleTest.addVehicle(test_model_1);
+        vehicleTest.addVehicle(test_model_2);
+        vehicleTest.addVehicle(test_model_3);
+        vehicleTest.addVehicle(test_model_4);
+
+        // When
         vehicleTest.findMostExpensiveVehicle();
 
-        //then
-        Assert.assertEquals("Not cheapest car", norm4, vehicleTest.findMostExpensiveVehicle());
+        // Then
+        Assert.assertEquals("This is not the most expensive vehicle", test_model_4, vehicleTest.findMostExpensiveVehicle());
     }
 
     @Test
-    public void testExpensiveVehicleLarge(){
-        //given
-        Vehicle norm1 = new Vehicle("Ran Model", 2012, false, 12000, 26);
-        Vehicle norm2 = new Vehicle("Ran Model", 2012, false, 11000, 26);
-        Vehicle norm3 = new Vehicle("Ran Model", 2012, false, 10000, 26);
-        Vehicle norm4 = new Vehicle("Ran Model", 2012, false, 1000000000, 26);
-        Inventory vehicleTest = new Inventory();
-        vehicleTest.addVehicle(norm1);
-        vehicleTest.addVehicle(norm2);
-        vehicleTest.addVehicle(norm3);
-        vehicleTest.addVehicle(norm4);
+    public void testFindMostExpensiveVehicleNegative() {
+        // Given
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 10000, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 11000, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 12000, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, -130000, 23);
 
-        //when
+        Inventory vehicleTest = new Inventory();
+        vehicleTest.addVehicle(test_model_1);
+        vehicleTest.addVehicle(test_model_2);
+        vehicleTest.addVehicle(test_model_3);
+        vehicleTest.addVehicle(test_model_4);
+
+        // When
         vehicleTest.findMostExpensiveVehicle();
 
-        //then
-        Assert.assertEquals("Not cheapest car", norm4, vehicleTest.findMostExpensiveVehicle());
-    }
-
-
-    @Test
-    public void testExpensiveVehicleDecimalNegativeZero(){
-        //given
-        Vehicle norm1 = new Vehicle("Ran Model", 2012, false, 0, 26);
-        Vehicle norm2 = new Vehicle("Ran Model", 2012, false, 11000.98, 26);
-        Vehicle norm3 = new Vehicle("Ran Model", 2012, false, -8000, 26);
-        Vehicle norm4 = new Vehicle("Ran Model", 2012, false, 500, 26);
-        Inventory vehicleTest = new Inventory();
-        vehicleTest.addVehicle(norm1);
-        vehicleTest.addVehicle(norm2);
-        vehicleTest.addVehicle(norm3);
-        vehicleTest.addVehicle(norm4);
-
-        //when
-        vehicleTest.findMostExpensiveVehicle();
-
-        //then
-        Assert.assertEquals("Not cheapest car", norm2, vehicleTest.findMostExpensiveVehicle());
+        // Then
+        Assert.assertEquals("This is not the most expensive vehicle", test_model_3, vehicleTest.findMostExpensiveVehicle());
     }
 
     @Test
-    public void testExpensiveVehicleNoData(){
-        //given
-        Vehicle norm1 = new Vehicle("", 0, false, 0, 0);
-        Inventory vehicleTest = new Inventory();
-        vehicleTest.addVehicle(norm1);
+    public void testFindMostExpensiveVehicleLarge() {
+        // Given
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 10000, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 11000, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 12000, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, 130000, 23);
 
-        //when
+        Inventory vehicleTest = new Inventory();
+        vehicleTest.addVehicle(test_model_1);
+        vehicleTest.addVehicle(test_model_2);
+        vehicleTest.addVehicle(test_model_3);
+        vehicleTest.addVehicle(test_model_4);
+
+        // When
         vehicleTest.findMostExpensiveVehicle();
 
-        //then
-        Assert.assertEquals("Not cheapest car", "No vehicle", vehicleTest.findMostExpensiveVehicle());
+        // Then
+        Assert.assertEquals("This is not the most expensive vehicle", test_model_4, vehicleTest.findMostExpensiveVehicle());
     }
 
 }

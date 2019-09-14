@@ -11,20 +11,20 @@ public class Truck extends Vehicle {
         this.towCapacity = towCapacity;
     }
 
-    public boolean getHasSideStep() {
-        return (this.hasSideStep);
-    }
-
-    public int getTowCapacity() {
-        return (this.towCapacity);
-    }
-
     public void setHasSideStep(boolean YoN) {
         this.hasSideStep = YoN;
     }
 
     public void setTowCapacity(int capacity) {
         this.towCapacity = capacity;
+    }
+
+    public boolean getHasSideStep() {
+        return (this.hasSideStep);
+    }
+
+    public int getTowCapacity() {
+        return (this.towCapacity);
     }
 
     public void printVehicle() {
