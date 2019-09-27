@@ -1,51 +1,61 @@
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Inventory {
+public class Inventory extends ArrayList implements Serializable {
 
-    private ArrayList<Vehicle> Inventory = new ArrayList<Vehicle>();
+    public static List<Vehicle> Inventory;
+
+    public Inventory() {
+        Inventory = new ArrayList<>();
+    }
 
     // Constructor
-    public void Inventory() {
-        this.Inventory = null;
+    public List<Vehicle> getInventoryList() {
+        return Inventory;
     }
 
     // Add vehicle
-    public void addVehicle(Vehicle v) {
-        this.Inventory.add(v);
+    public static void addVehicle(Vehicle v) {
+        Inventory.add(v);
     }
 
     // Remove vehicle
     public void removeVehicle(Vehicle v) {
-        this.Inventory.remove(v);
+        Inventory.remove(v);
     }
 
     // Find cheapest vehicle MSRP
     public Vehicle findCheapestVehicle() {
 
-        double maxValue = Double.MAX_VALUE;
-        Vehicle v = new Vehicle("", 0, false, 0, 0);
+        Vehicle cheap = Inventory.get(0);
 
         for (int i = 0; i < this.Inventory.size(); i++) {
-            if (Inventory.get(i).getMSRP() < maxValue) {
-                maxValue = Inventory.get(i).getMSRP();
-                v = Inventory.get(i);
+            if (Inventory.get(i).getMSRP() < cheap.getMSRP()) {
+                cheap = Inventory.get(i);
             }
         }
-        return v;
+        return cheap;
+    }
+
+    public int getSize() {
+        return Inventory.size();
+    }
+
+    public Vehicle get(int index) {
+        return Inventory.get(index);
     }
 
     // Find cheapest vehicle MSRP
     public Vehicle findMostExpensiveVehicle() {
-        double minValue = Double.MIN_VALUE;
-        Vehicle v = new Vehicle("", 0, false, 0, 0);
+        Vehicle expensive = Inventory.get(0);
 
         for (int i = 0; i < this.Inventory.size(); i++) {
-            if (Inventory.get(i).getMSRP() > minValue) {
-                minValue = Inventory.get(i).getMSRP();
-                v = Inventory.get(i);
+            if (Inventory.get(i).getMSRP() > expensive.getMSRP()) {
+                expensive = Inventory.get(i);
             }
         }
-        return v;
+        return expensive;
     }
 
     // Print average MSRP of all vehicles

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class Vehicle {
+public class Vehicle implements Serializable {
 
     // Fields
     private String makeAndModel;
@@ -10,6 +11,10 @@ public class Vehicle {
     private boolean is4WD;
 
     // Constructors
+    public Vehicle() {
+        this("", 0, false, 0, 0);
+    }
+
     public Vehicle(String makeAndModel, int year, boolean is4WD, int MSRP,
                    int mpg) {
         this.makeAndModel = makeAndModel;
@@ -21,23 +26,23 @@ public class Vehicle {
 
     // Getters
     public String getMakeAndModel() {
-        return (this.makeAndModel);
+        return makeAndModel;
     }
 
     public int getYear() {
-        return (this.year);
+        return year;
     }
 
     public boolean getIs4WD() {
-        return (this.is4WD);
+        return is4WD;
     }
 
     public int getMSRP() {
-        return (this.MSRP);
+        return MSRP;
     }
 
     public int getMpg() {
-        return (this.mpg);
+        return mpg;
     }
 
     // Setters
@@ -57,8 +62,8 @@ public class Vehicle {
         this.MSRP = MSRP;
     }
 
-    public void setMpg(int MPG) {
-        this.mpg = MPG;
+    public void setMpg(int mpg) {
+        this.mpg = mpg;
     }
 
     // Print statement that is overwritten
