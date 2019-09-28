@@ -7,15 +7,13 @@ import java.nio.charset.StandardCharsets;
 
 public class Dealer implements Serializable {
     private String DATA_URL = "https://raw.githubusercontent.com/kyungsooim/TestData/master/data/SeptemberInventory.txt";
-    private Inventory Inventory;
+    private Inventory webInventory;
 
-    /**
-     * Default constructor sets the inventory
-     */
     public Dealer() {
-        Inventory = new Inventory();
+        webInventory = new Inventory();
     }
 
+    //Reads data from web and inserts it into a Vehicle Object
     public void loadDataFromWeb() {
         InputStream in = null;
 
@@ -24,11 +22,11 @@ public class Dealer implements Serializable {
             LineIterator lineIterator = IOUtils.lineIterator(in, StandardCharsets.UTF_8);
             while (lineIterator.hasNext()) {
                 String line = lineIterator.nextLine();
-                String[] fields = line.split(",");
-                if ((fields.length == 4)) {
-                    Inventory.addVehicle(new Vehicle(fields[0], Integer.parseInt(fields[1]), Boolean.parseBoolean(fields[3]), Integer.parseInt(fields[2]), 0));
+                String[] info = line.split(",");
+                if ((info.length == 4)) {
+                    webInventory.addVehicle(new Vehicle(info[0], Integer.parseInt(info[1]), Boolean.parseBoolean(info[3]), Integer.parseInt(info[2]), 0));
                 } else {
-                    Inventory.addVehicle(new Vehicle(fields[0], Integer.parseInt(fields[1]), false, Integer.parseInt(fields[2]), 0));
+                    webInventory.addVehicle(new Vehicle(info[0], Integer.parseInt(info[1]), false, Integer.parseInt(info[2]), 0));
                 }
             }
             lineIterator.close();
@@ -39,35 +37,32 @@ public class Dealer implements Serializable {
         }
     }
 
-    /**
-     * Serializes the dealer object
-     */
+    //Serializes the dealer object
     public void serializeDealer() {
-        File file = FileUtils.getFile("./", "inventory.obj");
-        byte[] data = SerializationUtils.serialize(Inventory);
+        File carList = FileUtils.getFile("./", "inventory.obj");
+        byte[] dataFromWeb = SerializationUtils.serialize(webInventory);
         try {
-            FileUtils.writeByteArrayToFile(file, data);
+            FileUtils.writeByteArrayToFile(carList, dataFromWeb);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * Deserializes the dealer object
-     */
-    public void deserializeDealer() {
-        File file = FileUtils.getFile("./", "inventory.obj");
 
-        byte[] dataToDeserialize = null;
+    //Deserializes the dealer object
+    public void deserializeDealer() {
+        File carList = FileUtils.getFile("./", "inventory.obj");
+
+        byte[] webDataFile = null;
         try {
-            dataToDeserialize = FileUtils.readFileToByteArray(file);
+            webDataFile = FileUtils.readFileToByteArray(carList);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Inventory deserializeDealer = SerializationUtils.deserialize(dataToDeserialize);
-        for (Vehicle v : deserializeDealer.getInventoryList()) {
-            v.printVehicle();
+        Inventory deserializeDealer = SerializationUtils.deserialize(webDataFile);
+        for (Vehicle vehicle : deserializeDealer.getInventoryList()) {
+            vehicle.printVehicle();
             System.out.println();
         }
     }
