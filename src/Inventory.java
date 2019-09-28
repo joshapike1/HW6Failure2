@@ -10,7 +10,7 @@ public class Inventory extends ArrayList implements Serializable {
         Inventory = new ArrayList<>();
     }
 
-    // Constructor
+    // Constructors
     public List<Vehicle> getInventoryList() {
         return Inventory;
     }

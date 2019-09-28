@@ -13,7 +13,7 @@ public class Dealer implements Serializable {
         webInventory = new Inventory();
     }
 
-    //Reads data from web and inserts it into a Vehicle Object
+    // Reads data from web and inserts it into a Vehicle Object.
     public void loadDataFromWeb() {
         InputStream in = null;
 
@@ -37,7 +37,7 @@ public class Dealer implements Serializable {
         }
     }
 
-    //Serializes the dealer object
+    // Serializes the dealer object
     public void serializeDealer() {
         File carList = FileUtils.getFile("./", "inventory.obj");
         byte[] dataFromWeb = SerializationUtils.serialize(webInventory);
@@ -49,7 +49,7 @@ public class Dealer implements Serializable {
     }
 
 
-    //Deserializes the dealer object
+    // Deserializes the dealer object
     public void deserializeDealer() {
         File carList = FileUtils.getFile("./", "inventory.obj");
 

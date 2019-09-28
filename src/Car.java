@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-
 public class Car extends Vehicle {
 
     private boolean isConvertible;

@@ -10,7 +10,7 @@ public class Vehicle implements Serializable {
     private int mpg;
     private boolean is4WD;
 
-    // Constructors
+    // Default Constructors
     public Vehicle() {
         this("", 0, false, 0, 0);
     }

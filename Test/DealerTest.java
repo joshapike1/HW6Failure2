@@ -10,6 +10,7 @@ public class DealerTest {
 
     Dealer dealer = new Dealer();
 
+    // Test dealer.loadWebData
     @Test
     public void loadTest(){
         dealer.loadDataFromWeb();
@@ -17,13 +18,14 @@ public class DealerTest {
 
     }
 
+    // Test dealer.serializeDealer
     @Test
     public void serializedTest(){
         File file = new File("C:\\Users\\josha\\IdeaProjects\\hw5-joshapike1\\inventory.obj");
         Assert.assertTrue(file.exists());
     }
 
-
+    // Test dealer.deserializeDealer
     @Test
         public void deserializeTest(){
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();

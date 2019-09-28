@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-
 public class Truck extends Vehicle {
 
     private boolean hasSideStep;
