@@ -79,4 +79,15 @@ public class DealerTest {
                 "0 MPG\r\r";
         Assert.assertEquals(expectedOutput.replaceAll("\n", "").replaceAll("\r", ""), outContent.toString().replaceAll("\n", "").replaceAll("\r", ""));
     }
+
+    @Test
+    public void testGenerateReport() {
+        Vehicle test_model_1 = new Vehicle("Test Model", 2000, false, 2, 20);
+        Vehicle test_model_2 = new Vehicle("Test Model", 2001, false, 2, 21);
+        Vehicle test_model_3 = new Vehicle("Test Model", 2002, false, 2, 22);
+        Vehicle test_model_4 = new Vehicle("Test Model", 2003, false, 2, 23);
+
+        Inventory inv = new Inventory();
+        dealer.generateReport(inv);
+    }
 }
